@@ -1,0 +1,42 @@
+[package]
+name = "sway-mcp"
+version = "0.0.2"
+edition = "2024"
+description = "MCP server for Sway window manager and Dank Material Shell controls"
+license = "MIT"
+
+[lib]
+name = "sway_mcp"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sway-mcp"
+path = "src/bin/sway-mcp.rs"
+
+[[bin]]
+name = "dms-mcp"
+path = "src/bin/dms-mcp.rs"
+
+[dependencies]
+rmcp = { version = "~3.5.1", features = [
+    "server",
+    "macros",
+    "transport-io",
+    "schemars",
+] }
+tokio = { version = "1", features = [
+    "macros",
+    "rt-multi-thread",
+    "io-std",
+    "process",
+    "time",
+] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+schemars = "1"
+anyhow = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+tempfile = "3"
